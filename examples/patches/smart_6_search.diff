@@ -1,0 +1,12 @@
+--- a/portal/app.py
++++ b/portal/app.py
+@@ -211,7 +211,8 @@
+ 
+ @app.get("/search")  # L5: matches every user's titles
+ def search(q_: str = Query("", alias="q"), user=Depends(current_user)):
+-    return brief(q("select * from docs where title like ?", f"%{q_}%"))
++    rows = q("select * from docs where title like ?", f"%{q_}%")
++    return brief([r for r in rows if can_access(user, r)])
+ 
+ 
+ @app.get("/uploads/{fname}")

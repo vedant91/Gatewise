@@ -1,0 +1,19 @@
+--- a/portal/app.py
++++ b/portal/app.py
+@@ -172,12 +172,16 @@
+ @app.get("/documents/{doc_id}/versions")  # hidden V1
+ def versions(doc_id: int, user=Depends(current_user)):
+     doc = get_document(doc_id)
++    if not can_access(user, doc):
++        raise HTTPException(404, "no such document")
+     return {"versions": [{"v": 1, "content": body(doc)}]}
+ 
+ 
+ @app.get("/documents/{doc_id}/export")  # hidden V2
+ def export(doc_id: int, user=Depends(current_user)):
+     doc = get_document(doc_id)
++    if not can_access(user, doc):
++        raise HTTPException(404, "no such document")
+     return PlainTextResponse(body(doc))
+ 
+ 

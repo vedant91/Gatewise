@@ -1,0 +1,30 @@
+name: gatewise-access-control-gate
+
+# Runs on every push to main and on PRs: builds an ephemeral sandbox (a throw-away replica with fake data),
+# re-tests who-can-open-what, and fails the pipeline before staging/prod if a leak exists.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install fastapi "uvicorn[standard]" httpx pytest mcp
+      - name: Legit-flow tests (must stay green)
+        run: python -m pytest portal/tests -q
+      - name: Prove the verifier (naive fix rejected, policy-aware fixes accepted)
+        run: python -m gatewise.cli demo
+      # For a real app, replace the demo step with the gate itself. It exits 1 when any leak is proven:
+      #   python -m gatewise.cli scan --fail-on-leak
+      - name: Keep the evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gatewise-artifacts
+          path: artifacts/

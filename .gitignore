@@ -1,0 +1,10 @@
+﻿__pycache__/
+.pytest_cache/
+artifacts/
+.impeccable/
+*.db
+portal/uploads/
+mcp_err.log
+# private / organizer material, not ours to publish
+Claude_Differentiating_AI_architecture_*.json
+PS_ HACK ON TRACK*.pdf

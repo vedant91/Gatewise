@@ -1,0 +1,12 @@
+--- a/portal/app.py
++++ b/portal/app.py
+@@ -202,6 +202,9 @@
+     rows = q("select * from tokens where token=?", token)
+     if not rows:
+         raise HTTPException(404, "no such link")
++    user = maybe_user(request)
++    if rows[0]["expires"] <= NOW or (rows[0]["recipient"] and (not user or user["name"] != rows[0]["recipient"])):
++        raise HTTPException(404, "no such link")
+     doc = get_document(rows[0]["doc_id"])
+     return {"id": doc["id"], "title": doc["title"], "content": body(doc)}
+ 

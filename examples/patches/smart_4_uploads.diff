@@ -1,0 +1,13 @@
+--- a/portal/app.py
++++ b/portal/app.py
+@@ -211,4 +211,9 @@
+     return brief(q("select * from docs where title like ?", f"%{q_}%"))
+ 
+ 
+-app.mount("/uploads", StaticFiles(directory=UPLOADS), name="uploads")  # L3: predictable path, no auth
++@app.get("/uploads/{fname}")
++def uploads(fname: str, user=Depends(current_user)):
++    rows = q("select * from docs where fname=?", fname)
++    if not rows or not can_access(user, rows[0]):
++        raise HTTPException(404, "no such file")
++    return PlainTextResponse(body(rows[0]))

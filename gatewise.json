@@ -1,0 +1,26 @@
+{
+  "oracle_user": "admin",
+  "accounts": {"alice": "pw-alice", "bob": "pw-bob", "dave": "pw-dave", "admin": "pw-admin"},
+  "views": ["/documents", "/shared", "/team", "/public", "/admin/documents"],
+  "endpoints": {
+    "read": "/documents/{id}",
+    "preview": "/documents/{id}/preview",
+    "download": "/download?id={id}",
+    "raw": "/uploads/doc_{id}.txt",
+    "versions": "/documents/{id}/versions",
+    "export": "/documents/{id}/export",
+    "search": "/search?q={q}"
+  },
+  "hash_actions": ["raw", "download", "export"],
+  "share_path": "/documents/{doc}/share",
+  "token_path": "/s/{token}",
+  "token_cases": [
+    {"name": "token_bound", "owner": "alice", "doc": 2, "json": {"recipient": "bob", "ttl": 3600}, "allow": ["bob"]},
+    {"name": "token_public", "owner": "admin", "doc": 5, "json": {"ttl": 3600}, "allow": ["alice", "bob", "dave", "anon"]},
+    {"name": "token_expired", "owner": "alice", "doc": 1, "json": {"ttl": 0}, "allow": []}
+  ],
+  "allow_hosts": ["127.0.0.1", "localhost"],
+  "allowed_files": ["portal/app.py"],
+  "max_changed_lines": 20,
+  "volatile_keys": ["csrf", "nonce", "timestamp", "etag", "request_id"]
+}

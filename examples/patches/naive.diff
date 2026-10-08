@@ -1,0 +1,11 @@
+--- a/portal/app.py
++++ b/portal/app.py
+@@ -148,6 +148,8 @@
+ @app.get("/documents/{doc_id}")  # L1: authenticated, never authorized
+ def read_document(doc_id: int, user=Depends(current_user)):
+     doc = get_document(doc_id)
++    if doc["owner"] != user["name"]:
++        raise HTTPException(403, "forbidden")
+     return {"id": doc["id"], "title": doc["title"], "content": body(doc)}
+ 
+ 

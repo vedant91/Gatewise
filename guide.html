@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gatewise — Plain Guide</title>
+<style>
+:root{
+  --bg:#f6f7f9;--surface:#fff;--ink:#16181d;--muted:#5b6270;--line:#d9dde4;--dot:#d3d8e0;
+  --blue:#2563eb;--blue-s:#e8efff;--green:#15803d;--green-s:#e3f6ea;--amber:#b45309;--amber-s:#fdf0d5;--violet:#6d28d9;--violet-s:#efe8fd;--red:#b91c1c;--red-s:#fde4e4;
+  --code:#0f172a;--code-ink:#e2e8f0;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1116;--surface:#161b22;--ink:#e6e9ef;--muted:#9aa4b2;--line:#2a313c;--dot:#222a35;
+  --blue:#7aa2ff;--blue-s:#16223f;--green:#4ade80;--green-s:#12351f;--amber:#fbbf24;--amber-s:#3a2a0a;--violet:#b79cff;--violet-s:#241a45;--red:#f87171;--red-s:#3b1515;
+  --code:#0a0d12;--code-ink:#dbe3ee}}
+:root[data-theme="dark"]{
+  --bg:#0e1116;--surface:#161b22;--ink:#e6e9ef;--muted:#9aa4b2;--line:#2a313c;--dot:#222a35;
+  --blue:#7aa2ff;--blue-s:#16223f;--green:#4ade80;--green-s:#12351f;--amber:#fbbf24;--amber-s:#3a2a0a;--violet:#b79cff;--violet-s:#241a45;--red:#f87171;--red-s:#3b1515;
+  --code:#0a0d12;--code-ink:#dbe3ee}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1060px;margin:0 auto;padding:28px 20px 80px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+header b{font-size:1.1rem}
+button{font:inherit;cursor:pointer}
+.tbtn{font-size:.85rem;padding:5px 10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:6px}
+h1{font-size:2.2rem;line-height:1.15;margin:28px 0 10px}
+h2{font-size:1.5rem;margin:56px 0 6px;line-height:1.25}
+h2 small{display:block;font-size:.95rem;font-weight:400;color:var(--muted);margin-top:2px}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}.lead{font-size:1.1rem;color:var(--muted);max-width:760px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:12px 0}
+.two{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.big{font-size:1.15rem}
+.note{background:var(--blue-s);border:1px solid var(--blue);border-radius:8px;padding:10px 14px;margin:14px 0}
+.note.warn{background:var(--amber-s);border-color:var(--amber)}
+.note.bad{background:var(--red-s);border-color:var(--red)}
+.note.ok{background:var(--green-s);border-color:var(--green)}
+table{border-collapse:collapse;width:100%;font-size:.93rem;margin:10px 0;background:var(--surface)}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--blue-s)}
+.tw{overflow-x:auto}
+code{font:.88em ui-monospace,Consolas,monospace;background:var(--blue-s);padding:1px 5px;border-radius:4px}
+pre{background:var(--code);color:var(--code-ink);padding:12px 14px;border-radius:8px;overflow-x:auto;font:13px/1.55 ui-monospace,Consolas,monospace}
+pre code{background:none;padding:0}
+ol.steps{padding-left:0;list-style:none;counter-reset:s}
+ol.steps li{counter-increment:s;display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+ol.steps li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;text-align:center;font-weight:700;line-height:26px;font-size:.85rem}
+.pill{display:inline-block;padding:1px 9px;border-radius:99px;font-size:.78rem;font-weight:600;margin-right:4px}
+.pill.o{background:var(--blue-s);color:var(--blue)}.pill.v{background:var(--violet-s);color:var(--violet)}.pill.a{background:var(--amber-s);color:var(--amber)}
+/* diagram canvas: Lucid-like dotted board */
+.board{background:var(--surface) radial-gradient(var(--dot) 1px,transparent 1.2px) 0 0/18px 18px;border:1px solid var(--line);border-radius:10px;padding:8px;overflow-x:auto}
+.board svg{display:block;min-width:900px;width:100%;height:auto}
+svg text{font-family:inherit;fill:var(--ink)}
+.lane-b{fill:var(--blue)}.lane-g{fill:var(--green)}.lane-v{fill:var(--violet)}.lane-a{fill:var(--amber)}
+.lane-bg{fill:var(--surface);fill-opacity:.72;stroke:var(--line)}
+.lt{font-size:13px;font-weight:700;fill:#fff}
+.bx{fill:var(--surface);stroke-width:2}.bx.b{stroke:var(--blue)}.bx.g{stroke:var(--green)}.bx.v{stroke:var(--violet)}.bx.a{stroke:var(--amber);fill:var(--amber-s)}.bx.n{stroke:var(--muted)}
+.bt{font-size:13px;font-weight:700}.bs{font-size:12px;fill:var(--muted)}
+.num{fill:var(--blue)}.numt{font-size:12px;font-weight:700;fill:#fff}
+.ar{stroke:var(--muted);stroke-width:2;fill:none}.ar.r{stroke:var(--red);stroke-dasharray:6 4}
+.al{font-size:12px;fill:var(--muted)}.al.r{fill:var(--red)}
+/* matrix */
+.mx td,.mx th{text-align:center;min-width:70px}.mx td.c{font-weight:700;font-size:1.05rem}
+.mx .match{background:var(--green-s);color:var(--green)}.mx .leak{background:var(--red-s);color:var(--red)}.mx .reg{background:var(--amber-s);color:var(--amber)}
+.mx td.flip{outline:3px solid var(--blue);outline-offset:-3px}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.btns button{padding:7px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btns button.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.verdict{padding:10px 14px;border-radius:8px;font-weight:600;margin:10px 0}
+.verdict.ok{background:var(--green-s);color:var(--green)}.verdict.bad{background:var(--red-s);color:var(--red)}.verdict.info{background:var(--blue-s);color:var(--blue)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><b>Gatewise</b><span style="color:var(--muted)">PS1 · The Verified Fix · plain guide (full spec: PRD.md)</span><button class="tbtn" id="theme">Toggle theme</button></header>
+
+<h1>A tool that fixes access-control bugs,<br>and proves it broke nothing.</h1>
+<p class="lead">Short version of the whole project. Read it top to bottom once and you can explain it to anyone.</p>
+
+<!-- 1 -->
+<h2>1 · What are we actually building?<small>In one minute, no jargon</small></h2>
+<div class="card big">
+<b>The problem.</b> A document portal (think: salary slips, contracts, KYC) lets people log in and open files. Developers check <i>“are you logged in?”</i> but forget <i>“is this file yours?”</i>. So Bob changes <code>/documents/1</code> to <code>/documents/2</code> and reads Alice's salary slip. That is the bug (IDOR / broken access control, #1 on the OWASP Top 10).
+</div>
+<div class="two">
+  <div class="card"><b>What you give Gatewise</b><ul><li>the portal's <b>URL</b> (staging)</li><li><b>2–4 test logins</b> (Alice, Bob, Admin)</li><li>the app's <b>code</b> (git repo)</li></ul></div>
+  <div class="card"><b>What you get back</b><ul><li><b>Proof</b> the leak is real (fake secret found where it shouldn't be)</li><li>a <b>tiny patch</b> (often 2–3 lines)</li><li>a <b>permanent test</b> + one-page <b>certificate</b> that nothing else broke</li></ul></div>
+</div>
+<div class="note"><b>Analogy.</b> A security guard who (1) walks to every door and shows which ones open for the wrong person, (2) fixes the lock with the smallest possible change, then (3) tries <i>every</i> door again to prove nobody who should get in was locked out.</div>
+
+<!-- 2 -->
+<h2>2 · How are we different?<small>And why anyone would use it</small></h2>
+<div class="tw"><table>
+<tr><th>Kind of tool</th><th>Finds the leak</th><th>Knows who <i>should</i> have access</th><th>Writes the fix</th><th>Proves nothing else broke</th></tr>
+<tr><td>Scanners (ZAP, etc.)</td><td>sometimes</td><td>no, you write the rules</td><td>no</td><td>no</td></tr>
+<tr><td>Role-diff tools (e.g. Burp Autorize)</td><td>yes</td><td>you configure it</td><td>no</td><td>no</td></tr>
+<tr><td>AI auto-fix bots</td><td>from code, not runtime</td><td>no</td><td>yes, unverified</td><td>at best, generic tests</td></tr>
+<tr><td><b>Gatewise</b></td><td><b>yes, with proof</b></td><td><b>yes, learned from the app's own screens</b></td><td><b>yes, smallest diff</b></td><td><b>yes, whole-table before/after</b></td></tr>
+</table></div>
+<p style="color:var(--muted);font-size:.9rem">General characterisation from my knowledge, not a lab comparison. Re-check any claim before putting a competitor name on a slide. Role-diffing itself is not new; <b>closing the loop to a verified fix is</b>.</p>
+<h3>Our three real differences</h3>
+<ol class="steps">
+  <li><div><b>We learn “who should see what” from the app itself.</b> Each test user's own “My Documents / Shared with me / Team” pages are the answer key. No hand-written rules.</div></li>
+  <li><div><b>A plain-code checker, not the AI, accepts the fix.</b> It rebuilds the full who-can-open-what table before and after. Only the broken cells may change. The obvious “only the owner may open it” patch gets rejected because it locks out the person a file was shared with.</div></li>
+  <li><div><b>The exploit becomes a permanent test.</b> It runs in CI, so the next developer who forgets a check on a new endpoint gets caught automatically. That recurring protection is the real-world value.</div></li>
+</ol>
+<div class="note ok"><b>Who needs this?</b> Small and mid-size teams (fintech, HR, edtech) that hold personal documents, get a pentest or bug report with “IDOR on /documents”, and then sit on it because nobody can safely fix it quickly. Under India's DPDP Act 2023 (penalties up to ₹250 crore) that backlog is a liability.</div>
+
+<!-- 3 -->
+<h2>3 · The sandbox question<small>“We sandbox first, then exploit the URL, right?”</small></h2>
+<p>Almost, with one important refinement: <b>we never experiment on the real site.</b> Two lanes keep it safe.</p>
+<div class="two">
+  <div class="card"><span class="pill o">Observe lane</span><b> talks to the URL</b><p>Logs in as each test user and only <b>reads</b> (GET requests). Fake-secret proof only. Refuses any host not on the allowlist the owner signed off.</p></div>
+  <div class="card"><span class="pill v">Verify lane</span><b> talks to a copy</b><p>Every patch is tried on a <b>local replica</b> of the app built from its repo with fake data, in a network with no internet. The live site is never modified.</p></div>
+</div>
+<div class="tw"><table>
+<tr><th>Mode</th><th>Target</th><th>Used for</th></tr>
+<tr><td><b>A · Lab</b></td><td>Our own deliberately vulnerable portal, all fake data, all local</td><td>Hackathon demo and honest benchmarks (we know the right answers, so we can measure)</td></tr>
+<tr><td><b>B · Your staging</b></td><td>URL + test logins + repo supplied by the owner, who confirms “I own this”</td><td>The real use case. v1 auto-patches Python/FastAPI repos that boot locally; others get the proof + report only</td></tr>
+</table></div>
+<div class="note warn"><b>Why the lab alone is not enough:</b> judges will ask “is this a toy?”. Answer: Mode B is the product, the lab is the proving ground. Stretch goal: run the same engine on a <b>second, differently written app</b> to show it is not hard-wired to our portal.</div>
+
+<!-- 4 -->
+<h2>4 · Architecture<small>The diagram you can redraw on a whiteboard</small></h2>
+<div class="board">
+<svg viewBox="0 0 1000 545" role="img" aria-label="Gatewise architecture in swimlanes">
+<defs><marker id="h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker>
+<marker id="hr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--red)"/></marker></defs>
+<!-- lanes -->
+<rect class="lane-bg" x="0" y="18" width="1000" height="112" rx="6"/><rect class="lane-b" x="0" y="18" width="120" height="112" rx="6"/>
+<text class="lt" x="60" y="68" text-anchor="middle">YOU GIVE</text><text class="lt" x="60" y="86" text-anchor="middle" style="font-weight:400">inputs</text>
+<rect class="lane-bg" x="0" y="145" width="1000" height="140" rx="6"/><rect class="lane-g" x="0" y="145" width="120" height="140" rx="6"/>
+<text class="lt" x="60" y="205" text-anchor="middle">OBSERVE</text><text class="lt" x="60" y="223" text-anchor="middle" style="font-weight:400">live URL,</text><text class="lt" x="60" y="239" text-anchor="middle" style="font-weight:400">read-only</text>
+<rect class="lane-bg" x="0" y="300" width="1000" height="140" rx="6"/><rect class="lane-v" x="0" y="300" width="120" height="140" rx="6"/>
+<text class="lt" x="60" y="360" text-anchor="middle">VERIFY</text><text class="lt" x="60" y="378" text-anchor="middle" style="font-weight:400">local copy,</text><text class="lt" x="60" y="394" text-anchor="middle" style="font-weight:400">never live</text>
+<rect class="lane-bg" x="0" y="455" width="1000" height="80" rx="6"/><rect class="lane-a" x="0" y="455" width="120" height="80" rx="6"/>
+<text class="lt" x="60" y="500" text-anchor="middle">YOU GET</text>
+
+<!-- inputs -->
+<rect class="bx b" x="150" y="43" width="170" height="62" rx="8"/><text class="bt" x="235" y="68" text-anchor="middle">Staging URL</text><text class="bs" x="235" y="86" text-anchor="middle">+ allowed-hosts list</text>
+<rect class="bx b" x="370" y="43" width="170" height="62" rx="8"/><text class="bt" x="455" y="68" text-anchor="middle">Test logins</text><text class="bs" x="455" y="86" text-anchor="middle">alice · bob · admin</text>
+<rect class="bx n" x="590" y="43" width="170" height="62" rx="8" stroke-dasharray="5 4"/><text class="bt" x="675" y="68" text-anchor="middle">Known finding</text><text class="bs" x="675" y="86" text-anchor="middle">optional: from a pentest</text>
+<rect class="bx b" x="810" y="43" width="170" height="62" rx="8"/><text class="bt" x="895" y="68" text-anchor="middle">App code (git)</text><text class="bs" x="895" y="86" text-anchor="middle">to locate and patch</text>
+
+<!-- observe -->
+<rect class="bx g" x="150" y="175" width="170" height="82" rx="8"/><circle class="num" cx="168" cy="193" r="11"/><text class="numt" x="168" y="197" text-anchor="middle">1</text>
+<text class="bt" x="245" y="199" text-anchor="middle">Guard</text><text class="bs" x="235" y="218" text-anchor="middle">is this host allowed?</text><text class="bs" x="235" y="235" text-anchor="middle">owner says “I own it”</text>
+<rect class="bx g" x="370" y="175" width="170" height="82" rx="8"/><circle class="num" cx="388" cy="193" r="11"/><text class="numt" x="388" y="197" text-anchor="middle">2</text>
+<text class="bt" x="465" y="199" text-anchor="middle">Map</text><text class="bs" x="455" y="218" text-anchor="middle">what does each user</text><text class="bs" x="455" y="235" text-anchor="middle">legitimately see? = answers</text>
+<rect class="bx g" x="590" y="175" width="170" height="82" rx="8"/><circle class="num" cx="608" cy="193" r="11"/><text class="numt" x="608" y="197" text-anchor="middle">3</text>
+<text class="bt" x="685" y="199" text-anchor="middle">Attack</text><text class="bs" x="675" y="218" text-anchor="middle">each user tries the others'</text><text class="bs" x="675" y="235" text-anchor="middle">files; mismatch = leak</text>
+<rect class="bx g" x="810" y="175" width="170" height="82" rx="8"/><circle class="num" cx="828" cy="193" r="11"/><text class="numt" x="828" y="197" text-anchor="middle">4</text>
+<text class="bt" x="905" y="199" text-anchor="middle">Prove</text><text class="bs" x="895" y="218" text-anchor="middle">fake secret / hash match</text><text class="bs" x="895" y="235" text-anchor="middle">+ failing test (RED)</text>
+
+<!-- verify -->
+<rect class="bx v" x="810" y="325" width="170" height="90" rx="8"/><circle class="num" cx="828" cy="343" r="11"/><text class="numt" x="828" y="347" text-anchor="middle">5</text>
+<text class="bt" x="905" y="349" text-anchor="middle">Locate</text><text class="bs" x="895" y="368" text-anchor="middle">which function forgot</text><text class="bs" x="895" y="385" text-anchor="middle">the check? find siblings</text>
+<rect class="bx a" x="590" y="325" width="170" height="90" rx="8"/><circle class="num" cx="608" cy="343" r="11"/><text class="numt" x="608" y="347" text-anchor="middle">6</text>
+<text class="bt" x="685" y="349" text-anchor="middle">Propose (AI)</text><text class="bs" x="675" y="368" text-anchor="middle">small local model drafts</text><text class="bs" x="675" y="385" text-anchor="middle">a few tiny patches</text>
+<rect class="bx v" x="370" y="325" width="170" height="90" rx="8"/><circle class="num" cx="388" cy="343" r="11"/><text class="numt" x="388" y="347" text-anchor="middle">7</text>
+<text class="bt" x="465" y="349" text-anchor="middle">Check (code)</text><text class="bs" x="455" y="368" text-anchor="middle">test green? only broken</text><text class="bs" x="455" y="385" text-anchor="middle">cells changed? replay OK?</text>
+<rect class="bx n" x="150" y="325" width="170" height="90" rx="8"/><text class="bt" x="235" y="355" text-anchor="middle">Local replica</text><text class="bs" x="235" y="374" text-anchor="middle">copy of the app, fake data,</text><text class="bs" x="235" y="391" text-anchor="middle">no internet</text>
+
+<!-- outputs -->
+<rect class="bx a" x="150" y="475" width="830" height="42" rx="8"/><circle class="num" cx="172" cy="496" r="11"/><text class="numt" x="172" y="500" text-anchor="middle">8</text>
+<text class="bt" x="565" y="501" text-anchor="middle">Smallest passing patch  +  regression test  +  certificate (before/after table)  +  PR for a human to approve</text>
+
+<!-- arrows -->
+<g class="ar" marker-end="url(#h)">
+<path d="M235 105V173"/><path d="M455 105V173"/><path d="M675 105V173" stroke-dasharray="5 4"/>
+<path d="M322 216H368"/><path d="M542 216H588"/><path d="M762 216H808"/>
+<path d="M895 259V323"/>
+<path d="M808 360H762"/><path d="M588 360H542"/>
+<path d="M455 417V473"/>
+<path d="M980 74H993V370H982"/>
+</g>
+<path class="ar" marker-start="url(#h)" marker-end="url(#h)" d="M368 375H322"/>
+<path class="ar r" marker-end="url(#hr)" d="M542 395H588"/>
+<text class="al r" x="565" y="433" text-anchor="middle">rejected → retry (max 3×)</text>
+<text class="al" x="468" y="455">all checks pass</text>
+<text class="al" x="905" y="296" text-anchor="middle">proven finding</text>
+<text class="al" x="1" y="0"> </text>
+</svg>
+</div>
+<p style="color:var(--muted);font-size:.9rem;margin-top:8px">Solid arrows = data flow. Dashed = optional shortcut. Red dashed = the retry loop: the checker sends the <i>exact</i> cells it broke back to the AI. Amber = the only place AI is used.</p>
+
+<h3>The 8 steps with Alice and Bob</h3>
+<ol class="steps">
+  <li><div><b>Guard.</b> Is <code>staging.acme.test</code> on the allowlist and did the owner confirm? If not, stop.</div></li>
+  <li><div><b>Map.</b> Log in as Alice: her “My Documents” shows files 1, 2, 4. Bob sees 3, plus 2 (shared with him). That is the answer key: Bob may open 2 and 3, never 1.</div></li>
+  <li><div><b>Attack.</b> Bob requests file 1. If the server answers, that cell of the table is a <b>LEAK</b> (expected “no”, got “yes”).</div></li>
+  <li><div><b>Prove.</b> File 1 secretly contains <code>CANARY-d1-8f3a…</code>. Seeing it in Bob's response (or an identical hash) is undeniable. A bare “200 OK” never counts. We auto-write a test that fails today.</div></li>
+  <li><div><b>Locate.</b> Python's <code>ast</code> finds the function that fetches the document without calling the existing <code>can_access()</code> helper. Other functions doing the same are sibling variants (<code>/preview</code>, <code>/download</code>…).</div></li>
+  <li><div><b>Propose.</b> The local AI drafts up to 5 tiny patches under rules: only that file, ≤20 lines, reuse <code>can_access()</code>, never touch tests.</div></li>
+  <li><div><b>Check.</b> On the replica, per patch: the failing test now passes; the whole table is recomputed and <b>only</b> the leak cells changed; recorded normal traffic replays identically; deliberately broken “mutant” fixes are caught. The smallest patch that passes wins.</div></li>
+  <li><div><b>Deliver.</b> Patch + permanent test + certificate; a person approves the PR. Never auto-merged.</div></li>
+</ol>
+
+<!-- 5 -->
+<h2>5 · See the key idea: the table<small>Click through the patches and watch the checker judge them</small></h2>
+<p>Rows are documents, columns are users, each cell is “can they open it?”. A bug is any cell that disagrees with the answer key.</p>
+<div class="btns" id="btns"></div>
+<div class="tw"><table class="mx" id="mx"></table></div>
+<div class="verdict info" id="verdict"></div>
+<pre id="diffbox"></pre>
+<p style="color:var(--muted);font-size:.9rem">Green = matches the answer key. Red = leak. Amber = a legitimate user locked out (the “rushed fix” the problem statement warns about). Blue outline = changed versus the vulnerable build.</p>
+
+<!-- 6 -->
+<h2>6 · What tech, and why<small>One line each</small></h2>
+<div class="tw"><table>
+<tr><th>Tool</th><th>Its one job here</th><th>Why this one</th></tr>
+<tr><td>Python 3.12</td><td>All the engine code</td><td>One language for the tool and the lab app</td></tr>
+<tr><td>FastAPI + SQLite</td><td>The lab portal (and what v1 can patch)</td><td>Readable routes, auto list of endpoints, DB is one file so a copy = fresh fake data</td></tr>
+<tr><td>httpx</td><td>Send requests as each user</td><td>Fast, easy to wrap with the allowlist guard</td></tr>
+<tr><td>Playwright <span class="pill a">optional</span></td><td>Read the app's screens when they need JavaScript</td><td>Real browser; skip it if plain HTML pages are enough</td></tr>
+<tr><td>Canary + sha256</td><td>Proof of a leak</td><td>Byte-exact; no guessing, so no false alarms</td></tr>
+<tr><td>pytest</td><td>Freeze each exploit as a test</td><td>Red then green, then guards the repo forever</td></tr>
+<tr><td>Python <code>ast</code></td><td>Find the function missing the check</td><td>Built in, exact. (tree-sitter later for other languages)</td></tr>
+<tr><td>Ollama + Qwen2.5-Coder 7B</td><td>Propose patches (the only AI)</td><td>Runs locally: private, free, offline. A weak model is fine because the checker decides</td></tr>
+<tr><td>git worktree</td><td>Try each patch in its own copy</td><td>Safe, parallel, throw-away</td></tr>
+<tr><td>Docker Compose</td><td>Lab + replica + AI on a no-internet network</td><td>Repeatable demo; the network itself is a safety lock</td></tr>
+<tr><td>Jinja2</td><td>Render the certificate page</td><td>A coloured HTML table is enough</td></tr>
+</table></div>
+<p><b>Simplification:</b> the “state machine” is a plain Python loop with a counter capped at 3 retries. LangGraph can wrap it later if you want the name on a slide.</p>
+<h3>How it runs</h3>
+<div class="board">
+<svg viewBox="0 0 1000 200" role="img" aria-label="Deployment">
+<defs><marker id="h2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>
+<rect x="10" y="12" width="760" height="176" rx="10" fill="var(--violet-s)" stroke="var(--violet)" stroke-width="2" stroke-dasharray="6 4"/>
+<text class="bt" x="24" y="34" style="fill:var(--violet)">Docker network “sandbox”: no internet</text>
+<rect class="bx g" x="30" y="60" width="200" height="100" rx="8"/><text class="bt" x="130" y="95" text-anchor="middle">Lab portal / replica</text><text class="bs" x="130" y="115" text-anchor="middle">FastAPI + SQLite</text><text class="bs" x="130" y="132" text-anchor="middle">fake docs with canaries</text>
+<rect class="bx b" x="300" y="60" width="200" height="100" rx="8"/><text class="bt" x="400" y="95" text-anchor="middle">Gatewise engine</text><text class="bs" x="400" y="115" text-anchor="middle">Python: steps 1 to 8</text><text class="bs" x="400" y="132" text-anchor="middle">+ git worktrees, pytest</text>
+<rect class="bx a" x="550" y="60" width="200" height="100" rx="8"/><text class="bt" x="650" y="95" text-anchor="middle">Ollama</text><text class="bs" x="650" y="115" text-anchor="middle">Qwen2.5-Coder 7B</text><text class="bs" x="650" y="132" text-anchor="middle">sees code, never documents</text>
+<rect class="bx n" x="810" y="60" width="180" height="100" rx="8"/><text class="bt" x="900" y="95" text-anchor="middle">Your laptop</text><text class="bs" x="900" y="115" text-anchor="middle">certificate.html, PR</text><text class="bs" x="900" y="132" text-anchor="middle">human approves</text>
+<g class="ar" marker-end="url(#h2)"><path d="M300 100H232"/><path d="M500 100H548"/><path d="M752 150H808" stroke-dasharray="5 4"/></g>
+<path class="ar" marker-end="url(#h2)" d="M232 125H298"/>
+</svg>
+</div>
+
+<!-- 7 -->
+<h2>7 · The plan<small>Thin slice first; this is the PPT round</small></h2>
+<div class="tw"><table>
+<tr><th>Slice</th><th>Build</th><th>Done when</th></tr>
+<tr><td>1 Lab portal</td><td>FastAPI app with 5 seeded flaws + legit flows (shared, team, admin, public link)</td><td>Normal-use tests pass; you can steal a file by hand</td></tr>
+<tr><td>2 Table + proof</td><td>Steps 1 to 4: answer key, attack, canary proof, failing test</td><td>Exactly 9 red cells; screenshot for the slides</td></tr>
+<tr><td>3 Checker</td><td>Step 7 on a replica; hand-written naive and smart patches</td><td>Naive patch rejected, smart one accepted</td></tr>
+<tr><td>4 Locate + AI</td><td>Steps 5 and 6 with Ollama, retry loop</td><td>AI reaches an accepted patch in ≤3 rounds (or cached replay)</td></tr>
+<tr><td>5 Deliver</td><td>Certificate + patch file (PR last)</td><td>One command runs the whole demo</td></tr>
+<tr><td>Stretch</td><td>Second, differently written app; CI guard job</td><td>Same engine works unchanged</td></tr>
+</table></div>
+<h3>Cut from the earlier plan (and why)</h3>
+<ul>
+  <li><b>AI route classifier and AI explainer</b>: a template does it. <b>AI is used in exactly one place.</b></li>
+  <li><b>CYPHEX council, LangGraph, tree-sitter, PR bot first</b>: nice later, not needed to win the demo.</li>
+  <li><b>Semgrep</b>: optional; <code>ast</code> already finds siblings in Python.</li>
+</ul>
+
+<!-- 8 -->
+<h2>8 · Things that can bite us<small>And the cheap fix for each</small></h2>
+<div class="tw"><table>
+<tr><th>Risk</th><th>Fix</th></tr>
+<tr><td>Responses contain changing bits (timestamps, CSRF tokens, ETags), so “same response” looks different and we invent false collateral</td><td>Compare status + normalised JSON (strip volatile keys, sort keys and lists); record each normal request twice and drop fields that change on their own; never hash raw HTML</td></tr>
+<tr><td>The answer key (list screens) misses shared links, team access, paging, and a leaky list would mark the leak as “expected”</td><td>Lab: the seed file is the answer key. Real apps: list screens only <i>propose</i> a small policy file; a human confirms it, and we flag only cells where policy and screens agree</td></tr>
+<tr><td>Replica behaves differently from staging</td><td>Run the exploit test on the replica <i>before</i> patching and require it to fail. If it passes, the replica does not reproduce the bug: report “unverified” and stop</td></tr>
+<tr><td>7B model writes junk</td><td>Strict diff-only format, line cap, 5 tries, cached replay for the demo</td></tr>
+<tr><td>“It only works on your toy”</td><td>Be honest on scope; show the second app if time allows</td></tr>
+</table></div>
+<div class="note"><b>Honest limit (say it out loud):</b> the checker proves the bug is fixed <i>for the table we tested</i>. It does not prove no other bugs exist.</div>
+
+<!-- 9 -->
+<h2>9 · Explain it in 60 seconds<small>Read this to a friend</small></h2>
+<div class="card big">“Portals that store documents often check that you're logged in but forget to check the file is <i>yours</i>. We built Gatewise: you give it a staging URL, a few test logins and the code. It logs in as each user, works out who <i>should</i> see what from the app's own screens, then tries to open everyone else's files. If it gets one, it proves it with a hidden fake secret and writes a failing test. Then a small local AI proposes tiny patches, and a plain-code checker, not the AI, tries each on a copy of the app, re-tests every user and every file, and accepts only a patch that fixes the leak and changes nothing else. The obvious ‘owner only’ fix gets rejected because it locks out people a file was legitimately shared with. You end up with a verified patch, a permanent test, and a certificate a human can approve in minutes.”</div>
+
+</div>
+<script>
+(function(){
+  var r=document.documentElement;
+  document.getElementById('theme').onclick=function(){
+    var d=r.getAttribute('data-theme')==='dark'||(!r.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme:dark)').matches);
+    r.setAttribute('data-theme',d?'light':'dark');};
+  var users=['alice','bob','dave','admin','anon'];
+  var docs=['d1 Alice salary slip','d2 Alice contract (shared with bob)','d3 Bob offer letter','d4 Team handbook (alice, dave)','d5 Company brochure','d6 Admin policy'];
+  function p(a){return a.map(function(s){return s.split(' ')})}
+  var exp=p(['A D D A D','A A D A D','D A D A D','A D A A D','A A A A D','D D D A D']);
+  var vuln=docs.map(function(){return ['A','A','A','A','D']});
+  var naive=p(['A D D D D','A D D D D','D A D D D','A D D D D','D D D A D','D D D A D']);
+  var deny=docs.map(function(){return ['D','D','D','D','D']});
+  var S=[
+   {k:'v',l:'Vulnerable build',m:vuln,d:'doc = get_document(doc_id)   # checks login only'},
+   {k:'n',l:'Patch 1: owner only',m:naive,d:'+ if doc.owner_id != user.id:\n+     raise HTTPException(403)'},
+   {k:'x',l:'Patch 2: block everyone',m:deny,d:'+ raise HTTPException(403)'},
+   {k:'s',l:'Patch 3: reuse can_access()',m:exp,d:'+ if not can_access(user, doc, "read"):\n+     raise HTTPException(404)'}];
+  var cur='v',B=document.getElementById('btns'),M=document.getElementById('mx'),V=document.getElementById('verdict'),D=document.getElementById('diffbox');
+  S.forEach(function(s){var b=document.createElement('button');b.textContent=s.l;b.dataset.k=s.k;b.onclick=function(){cur=s.k;go()};B.appendChild(b)});
+  function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+  function go(){
+    var st=S.filter(function(s){return s.k===cur})[0];
+    [].forEach.call(B.children,function(b){b.classList.toggle('on',b.dataset.k===cur)});
+    var leak=0,reg=0,col=0,closed=0;
+    var h='<tr><th></th>'+users.map(function(u){return '<th>'+u+'</th>'}).join('')+'</tr>';
+    docs.forEach(function(d,i){
+      h+='<tr><th style="text-align:left">'+d+'</th>';
+      users.forEach(function(u,j){
+        var e=exp[i][j],o=st.m[i][j],b0=vuln[i][j],c='match';
+        if(e==='D'&&o==='A'){c='leak';leak++}else if(e==='A'&&o==='D'){c='reg';reg++}
+        var fl=o!==b0; if(fl){ if(e==='D'&&b0==='A')closed++; else col++ }
+        h+='<td class="c '+c+(fl?' flip':'')+'">'+(o==='A'?'✓':'✕')+'</td>';
+      });h+='</tr>';
+    });
+    M.innerHTML=h;
+    if(cur==='v'){V.className='verdict info';V.textContent='BEFORE: '+leak+' leaks. Example: bob can open alice\'s salary slip.';}
+    else if(!leak&&!reg&&!col){V.className='verdict ok';V.textContent='ACCEPTED: closed all '+closed+' leaks, 0 collateral changes, nobody legitimate locked out.';}
+    else{V.className='verdict bad';V.textContent='REJECTED: '+col+' collateral change(s), '+reg+' legitimate access(es) lost'+(leak?', '+leak+' leak(s) still open':'')+'. These exact cells go back to the AI for the retry.';}
+    D.innerHTML='<code>'+esc(st.d)+'</code>';
+  }
+  go();
+})();
+</script>
+</body>
+</html>

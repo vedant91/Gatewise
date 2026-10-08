@@ -1,0 +1,19 @@
+--- a/portal/app.py
++++ b/portal/app.py
+@@ -156,12 +156,16 @@
+ @app.get("/documents/{doc_id}/preview")  # L2
+ def preview(doc_id: int, user=Depends(current_user)):
+     doc = get_document(doc_id)
++    if not can_access(user, doc):
++        raise HTTPException(404, "no such document")
+     return HTMLResponse(f"<html><body><h1>{html.escape(doc['title'])}</h1><pre>{html.escape(body(doc))}</pre></body></html>")
+ 
+ 
+ @app.get("/download")  # L2
+ def download(id: int, user=Depends(current_user)):
+     doc = get_document(id)
++    if not can_access(user, doc):
++        raise HTTPException(404, "no such document")
+     return PlainTextResponse(body(doc))
+ 
+ 
