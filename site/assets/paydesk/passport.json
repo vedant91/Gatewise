@@ -1,0 +1,551 @@
+{
+  "schema": "gatewise.passport/1",
+  "app": "paydesk",
+  "run_id": "20261010-194505-ff425e",
+  "created": "2026-10-10T14:19:18Z",
+  "subject": {
+    "base_commit": "d93f684e417ec27e98c0b67799b2bda606417ee4",
+    "code_commit": "95f8713c3ec412cecda934504d3e33218d8f8a7f",
+    "tree": "8d80b8154bfddbc69d33ddbcaf12079ff6bdd96e",
+    "diff_sha256": "4c21545f8760c2d0ed88081111ae884fc63824d2d0529c52e78ba24eaa215d87",
+    "files": [
+      "paydesk/app.py"
+    ]
+  },
+  "claim": {
+    "leaks_before": 186,
+    "leaks_after": 0,
+    "regressions_after": 0,
+    "legitimate_access_preserved": true,
+    "scope": "Fixed on a sandbox copy for the tested accounts, items and doors listed here. This does not prove the absence of other flaws."
+  },
+  "matrix": {
+    "accounts": [
+      "priya",
+      "marco",
+      "lena",
+      "omar",
+      "nora",
+      "sam",
+      "tess",
+      "anon"
+    ],
+    "items": 7,
+    "doors": [
+      "notes",
+      "pdf",
+      "raw",
+      "read",
+      "search",
+      "token_expired",
+      "token_org_only",
+      "token_public"
+    ],
+    "checks": 301
+  },
+  "leaks_closed": [
+    "anon/d1/raw",
+    "anon/d1/token_expired",
+    "anon/d1/token_org_only",
+    "anon/d2/raw",
+    "anon/d3/raw",
+    "anon/d4/raw",
+    "anon/d5/raw",
+    "anon/d6/raw",
+    "anon/d7/raw",
+    "lena/d3/notes",
+    "lena/d3/pdf",
+    "lena/d3/raw",
+    "lena/d3/read",
+    "lena/d3/search",
+    "lena/d4/notes",
+    "lena/d4/pdf",
+    "lena/d4/raw",
+    "lena/d4/read",
+    "lena/d4/search",
+    "lena/d5/notes",
+    "lena/d5/pdf",
+    "lena/d5/raw",
+    "lena/d5/read",
+    "lena/d5/search",
+    "lena/d6/notes",
+    "lena/d6/pdf",
+    "lena/d6/raw",
+    "lena/d6/read",
+    "lena/d6/search",
+    "lena/d7/notes",
+    "lena/d7/pdf",
+    "lena/d7/raw",
+    "lena/d7/read",
+    "lena/d7/search",
+    "marco/d1/pdf",
+    "marco/d1/token_expired",
+    "marco/d2/pdf",
+    "marco/d3/pdf",
+    "marco/d4/notes",
+    "marco/d4/pdf",
+    "marco/d4/raw",
+    "marco/d4/read",
+    "marco/d4/search",
+    "marco/d5/notes",
+    "marco/d5/pdf",
+    "marco/d5/raw",
+    "marco/d5/read",
+    "marco/d5/search",
+    "marco/d6/notes",
+    "marco/d6/pdf",
+    "marco/d6/raw",
+    "marco/d6/read",
+    "marco/d6/search",
+    "marco/d7/pdf",
+    "nora/d1/notes",
+    "nora/d1/pdf",
+    "nora/d1/raw",
+    "nora/d1/read",
+    "nora/d1/search",
+    "nora/d1/token_expired",
+    "nora/d2/notes",
+    "nora/d2/pdf",
+    "nora/d2/raw",
+    "nora/d2/read",
+    "nora/d2/search",
+    "nora/d3/notes",
+    "nora/d3/pdf",
+    "nora/d3/raw",
+    "nora/d3/read",
+    "nora/d3/search",
+    "nora/d5/notes",
+    "nora/d5/pdf",
+    "nora/d5/raw",
+    "nora/d5/read",
+    "nora/d5/search",
+    "nora/d6/notes",
+    "nora/d6/pdf",
+    "nora/d6/raw",
+    "nora/d6/read",
+    "nora/d6/search",
+    "nora/d7/notes",
+    "nora/d7/pdf",
+    "nora/d7/raw",
+    "nora/d7/read",
+    "nora/d7/search",
+    "omar/d1/notes",
+    "omar/d1/pdf",
+    "omar/d1/raw",
+    "omar/d1/read",
+    "omar/d1/search",
+    "omar/d1/token_expired",
+    "omar/d2/notes",
+    "omar/d2/pdf",
+    "omar/d2/raw",
+    "omar/d2/read",
+    "omar/d2/search",
+    "omar/d4/notes",
+    "omar/d4/pdf",
+    "omar/d4/raw",
+    "omar/d4/read",
+    "omar/d4/search",
+    "omar/d5/notes",
+    "omar/d5/pdf",
+    "omar/d5/raw",
+    "omar/d5/read",
+    "omar/d5/search",
+    "omar/d6/notes",
+    "omar/d6/pdf",
+    "omar/d6/raw",
+    "omar/d6/read",
+    "omar/d6/search",
+    "omar/d7/notes",
+    "omar/d7/pdf",
+    "omar/d7/raw",
+    "omar/d7/read",
+    "omar/d7/search",
+    "priya/d1/token_expired",
+    "priya/d5/notes",
+    "priya/d5/pdf",
+    "priya/d5/raw",
+    "priya/d5/read",
+    "priya/d5/search",
+    "sam/d1/notes",
+    "sam/d1/pdf",
+    "sam/d1/raw",
+    "sam/d1/read",
+    "sam/d1/search",
+    "sam/d1/token_expired",
+    "sam/d1/token_org_only",
+    "sam/d2/notes",
+    "sam/d2/pdf",
+    "sam/d2/raw",
+    "sam/d2/read",
+    "sam/d2/search",
+    "sam/d3/notes",
+    "sam/d3/pdf",
+    "sam/d3/raw",
+    "sam/d3/read",
+    "sam/d3/search",
+    "sam/d4/notes",
+    "sam/d4/pdf",
+    "sam/d4/raw",
+    "sam/d4/read",
+    "sam/d4/search",
+    "sam/d6/notes",
+    "sam/d6/pdf",
+    "sam/d6/raw",
+    "sam/d6/read",
+    "sam/d6/search",
+    "sam/d7/notes",
+    "sam/d7/pdf",
+    "sam/d7/raw",
+    "sam/d7/read",
+    "sam/d7/search",
+    "tess/d1/notes",
+    "tess/d1/pdf",
+    "tess/d1/raw",
+    "tess/d1/read",
+    "tess/d1/search",
+    "tess/d1/token_expired",
+    "tess/d1/token_org_only",
+    "tess/d2/notes",
+    "tess/d2/pdf",
+    "tess/d2/raw",
+    "tess/d2/read",
+    "tess/d2/search",
+    "tess/d3/notes",
+    "tess/d3/pdf",
+    "tess/d3/raw",
+    "tess/d3/read",
+    "tess/d3/search",
+    "tess/d4/notes",
+    "tess/d4/pdf",
+    "tess/d4/raw",
+    "tess/d4/read",
+    "tess/d4/search",
+    "tess/d6/notes",
+    "tess/d6/pdf",
+    "tess/d6/raw",
+    "tess/d6/read",
+    "tess/d6/search",
+    "tess/d7/notes",
+    "tess/d7/pdf",
+    "tess/d7/raw",
+    "tess/d7/read",
+    "tess/d7/search"
+  ],
+  "patches": [
+    {
+      "title": "Guard the payslip endpoint",
+      "lines": 2,
+      "closed": 33,
+      "diff_sha256": "f06d7d79b883d8ae5c191091755d185ee655cc96533996c048ff86a3aa0133a6",
+      "gates": {
+        "exploit_red_on_replica": true,
+        "patch_applies": true,
+        "guard_only_constraints": true,
+        "exploit_progress": true,
+        "blast_radius_only_leaks_flipped": true,
+        "golden_flows_identical": true,
+        "legit_tests_pass": true
+      },
+      "collateral": []
+    },
+    {
+      "title": "Guard the PDF export",
+      "lines": 2,
+      "closed": 37,
+      "diff_sha256": "5c2efa8c5680c4dad043a3c51937baeebefdcac7e07c23e96a091b3eabc93428",
+      "gates": {
+        "exploit_red_on_replica": true,
+        "patch_applies": true,
+        "guard_only_constraints": true,
+        "exploit_progress": true,
+        "blast_radius_only_leaks_flipped": true,
+        "golden_flows_identical": true,
+        "legit_tests_pass": true
+      },
+      "collateral": []
+    },
+    {
+      "title": "Guard the HR notes",
+      "lines": 2,
+      "closed": 33,
+      "diff_sha256": "13dc2dc18be322d412fca5e7202726a6b468474cb0caff2f35740f6d5a59339d",
+      "gates": {
+        "exploit_red_on_replica": true,
+        "patch_applies": true,
+        "guard_only_constraints": true,
+        "exploit_progress": true,
+        "blast_radius_only_leaks_flipped": true,
+        "golden_flows_identical": true,
+        "legit_tests_pass": true
+      },
+      "collateral": []
+    },
+    {
+      "title": "Replace the open archive folder",
+      "lines": 7,
+      "closed": 40,
+      "diff_sha256": "94f2e44db97f9f09c1ef98e07335ac35067f7fe9df5799e1b0e12910be809469",
+      "gates": {
+        "exploit_red_on_replica": true,
+        "patch_applies": true,
+        "guard_only_constraints": true,
+        "exploit_progress": true,
+        "blast_radius_only_leaks_flipped": true,
+        "golden_flows_identical": true,
+        "legit_tests_pass": true
+      },
+      "collateral": []
+    },
+    {
+      "title": "Enforce share-link rules",
+      "lines": 3,
+      "closed": 10,
+      "diff_sha256": "daf58ed87f2113d53051d474ff70296828099a8ff1021d7f872f99f752bcdb21",
+      "gates": {
+        "exploit_red_on_replica": true,
+        "patch_applies": true,
+        "guard_only_constraints": true,
+        "exploit_progress": true,
+        "blast_radius_only_leaks_flipped": true,
+        "golden_flows_identical": true,
+        "legit_tests_pass": true
+      },
+      "collateral": []
+    },
+    {
+      "title": "Filter search results",
+      "lines": 3,
+      "closed": 33,
+      "diff_sha256": "e645b2d93f3868c460c27738c89413a7d311aafca43ecf6956d4c2de9fa00ca3",
+      "gates": {
+        "exploit_red_on_replica": true,
+        "patch_applies": true,
+        "guard_only_constraints": true,
+        "exploit_progress": true,
+        "blast_radius_only_leaks_flipped": true,
+        "golden_flows_identical": true,
+        "legit_tests_pass": true
+      },
+      "collateral": []
+    }
+  ],
+  "evidence": [
+    {
+      "what": "before: omar requests read of item 1: LEAK",
+      "file": "before_0_omar_d1_read.png",
+      "sha256": "1a44ca6c1335148d7eac770682ecbbccb4a9b14835a562456a1eb16821e019c9"
+    },
+    {
+      "what": "before: marco requests pdf of item 1: LEAK",
+      "file": "before_1_marco_d1_pdf.png",
+      "sha256": "6a43cb180481336bebf96ad7d840450f28eb0a6fca2cbda7782974d2557e64ac"
+    },
+    {
+      "what": "before: omar requests notes of item 1: LEAK",
+      "file": "before_2_omar_d1_notes.png",
+      "sha256": "94bb3a9c53b07cbb0f2ef5cd0972ba0af1a15279027f07c900c8c8df21fc8ad8"
+    },
+    {
+      "what": "before: omar requests raw of item 1: LEAK",
+      "file": "before_3_omar_d1_raw.png",
+      "sha256": "2c57ae7a43b285aa6ea416a73c779a004f38c928da7475313401d0ecc2212791"
+    },
+    {
+      "what": "before: omar requests search of item 1: LEAK",
+      "file": "before_4_omar_d1_search.png",
+      "sha256": "e4b604107acb2a5481e3f6bcd80333ed84f545cc71c0830a4074ebb5086a9d1c"
+    },
+    {
+      "what": "before: marco requests read of item 1: ALLOWED",
+      "file": "before_5_marco_d1_read.png",
+      "sha256": "aa818d2c140ed0b9143bf95ccc2bf88013b8b081448d746db23e4e8f29986bba"
+    },
+    {
+      "what": "after: omar requests read of item 1: BLOCKED",
+      "file": "after_0_omar_d1_read.png",
+      "sha256": "2da038f73ce0007ad080c8face5ab727f9c4b24ad974f9bcc9b3fbb87ec972f7"
+    },
+    {
+      "what": "after: marco requests pdf of item 1: BLOCKED",
+      "file": "after_1_marco_d1_pdf.png",
+      "sha256": "3a7553cb6584c51d1a0467595dfe9fae4e831fe76fc2943a2e019de9645a8505"
+    },
+    {
+      "what": "after: omar requests notes of item 1: BLOCKED",
+      "file": "after_2_omar_d1_notes.png",
+      "sha256": "d434bd7713d00a1f128bbd6ad1a0930e756ccb3bdf208fe334f335c324a721c3"
+    },
+    {
+      "what": "after: omar requests raw of item 1: BLOCKED",
+      "file": "after_3_omar_d1_raw.png",
+      "sha256": "41afd3479aa6e5b3a736c0925d0c672c212a9318c01bcc24d8cb6b8f702d51cd"
+    },
+    {
+      "what": "after: omar requests search of item 1: BLOCKED",
+      "file": "after_4_omar_d1_search.png",
+      "sha256": "1cfda2c569368ca744bf49db46812b1300d713b4ac021009c4c7e13155aaa3a6"
+    },
+    {
+      "what": "after: marco requests read of item 1: ALLOWED",
+      "file": "after_5_marco_d1_read.png",
+      "sha256": "aa818d2c140ed0b9143bf95ccc2bf88013b8b081448d746db23e4e8f29986bba"
+    },
+    {
+      "what": "before and after evidence report",
+      "file": "evidence.html",
+      "sha256": "d5adfd69b6e6b3ac603678011828d306f15aabf8c26fe6513dc6605179d40829"
+    }
+  ],
+  "court": {
+    "sites": 6,
+    "attacks": 18,
+    "caught": 18,
+    "survived": [],
+    "results": [
+      {
+        "line": 184,
+        "guard": "not can_access(user, ps)",
+        "mutant": "guard disabled",
+        "caught": true,
+        "why": "reopens 33 leaks the real fix closed"
+      },
+      {
+        "line": 184,
+        "guard": "not can_access(user, ps)",
+        "mutant": "guard inverted",
+        "caught": true,
+        "why": "locks out legitimate users: priya/d1/read, marco/d1/read, lena/d1/read"
+      },
+      {
+        "line": 184,
+        "guard": "not can_access(user, ps)",
+        "mutant": "guard blocks everyone",
+        "caught": true,
+        "why": "locks out legitimate users: priya/d1/read, marco/d1/read, lena/d1/read"
+      },
+      {
+        "line": 192,
+        "guard": "not can_access(user, ps, \"pdf\")",
+        "mutant": "guard disabled",
+        "caught": true,
+        "why": "reopens 37 leaks the real fix closed"
+      },
+      {
+        "line": 192,
+        "guard": "not can_access(user, ps, \"pdf\")",
+        "mutant": "guard inverted",
+        "caught": true,
+        "why": "locks out legitimate users: priya/d1/pdf, lena/d1/pdf, priya/d2/pdf"
+      },
+      {
+        "line": 192,
+        "guard": "not can_access(user, ps, \"pdf\")",
+        "mutant": "guard blocks everyone",
+        "caught": true,
+        "why": "locks out legitimate users: priya/d1/pdf, lena/d1/pdf, priya/d2/pdf"
+      },
+      {
+        "line": 200,
+        "guard": "not can_access(user, ps)",
+        "mutant": "guard disabled",
+        "caught": true,
+        "why": "reopens 33 leaks the real fix closed"
+      },
+      {
+        "line": 200,
+        "guard": "not can_access(user, ps)",
+        "mutant": "guard inverted",
+        "caught": true,
+        "why": "locks out legitimate users: priya/d1/notes, marco/d1/notes, lena/d1/notes"
+      },
+      {
+        "line": 200,
+        "guard": "not can_access(user, ps)",
+        "mutant": "guard blocks everyone",
+        "caught": true,
+        "why": "locks out legitimate users: priya/d1/notes, marco/d1/notes, lena/d1/notes"
+      },
+      {
+        "line": 230,
+        "guard": "rows[0][\"expires\"] <= NOW or (rows[0][\"org_only\"] and not (user and us",
+        "mutant": "guard disabled",
+        "caught": true,
+        "why": "reopens 10 leaks the real fix closed"
+      },
+      {
+        "line": 230,
+        "guard": "rows[0][\"expires\"] <= NOW or (rows[0][\"org_only\"] and not (user and us",
+        "mutant": "guard inverted",
+        "caught": true,
+        "why": "locks out legitimate users: priya/d1/token_org_only, marco/d1/token_org_only, omar/d1/token_org_only"
+      },
+      {
+        "line": 230,
+        "guard": "rows[0][\"expires\"] <= NOW or (rows[0][\"org_only\"] and not (user and us",
+        "mutant": "guard blocks everyone",
+        "caught": true,
+        "why": "locks out legitimate users: priya/d1/token_org_only, marco/d1/token_org_only, omar/d1/token_org_only"
+      },
+      {
+        "line": 401,
+        "guard": "not rows or not can_access(user, rows[0])",
+        "mutant": "guard disabled",
+        "caught": true,
+        "why": "reopens 33 leaks the real fix closed"
+      },
+      {
+        "line": 401,
+        "guard": "not rows or not can_access(user, rows[0])",
+        "mutant": "guard inverted",
+        "caught": true,
+        "why": "locks out legitimate users: priya/d1/raw, marco/d1/raw, lena/d1/raw"
+      },
+      {
+        "line": 401,
+        "guard": "not rows or not can_access(user, rows[0])",
+        "mutant": "guard blocks everyone",
+        "caught": true,
+        "why": "locks out legitimate users: priya/d1/raw, marco/d1/raw, lena/d1/raw"
+      },
+      {
+        "line": 208,
+        "guard": "can_access(user, r)",
+        "mutant": "guard disabled",
+        "caught": true,
+        "why": "reopens 33 leaks the real fix closed"
+      },
+      {
+        "line": 208,
+        "guard": "can_access(user, r)",
+        "mutant": "guard inverted",
+        "caught": true,
+        "why": "locks out legitimate users: priya/d1/search, marco/d1/search, lena/d1/search"
+      },
+      {
+        "line": 208,
+        "guard": "can_access(user, r)",
+        "mutant": "guard blocks everyone",
+        "caught": true,
+        "why": "locks out legitimate users: priya/d1/search, marco/d1/search, lena/d1/search"
+      }
+    ]
+  },
+  "tooling": {
+    "gates": [
+      "exploit_red_on_replica",
+      "patch_applies",
+      "guard_only_constraints",
+      "exploit_progress",
+      "blast_radius_only_leaks_flipped",
+      "golden_flows_identical",
+      "legit_tests_pass"
+    ]
+  },
+  "attestation": {
+    "alg": "ed25519",
+    "key_id": "06d6e5d7a50130ee",
+    "public_key": "6ce93763c1730aea0fa1336c528e24029fa557ed9a0624099802fa634bf12ce7",
+    "digest": "be4c019e7461c0ac21d7f1f8669c1bc1b7f8932ca90faf8f48d2949d5919a376",
+    "signature": "0480100d31f572d94c694fc39d81a7d234c2c3aa48438dd302c9b5f61feb3e9cd95fd188e8728c83d63eca51665ced3bf61cdf8c9477a78cac1b7048a6821f0f"
+  }
+}

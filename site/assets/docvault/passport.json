@@ -1,0 +1,448 @@
+{
+  "schema": "gatewise.passport/1",
+  "app": "docvault",
+  "run_id": "20261010-194204-05daf5",
+  "created": "2026-10-10T14:14:58Z",
+  "subject": {
+    "base_commit": "d93f684e417ec27e98c0b67799b2bda606417ee4",
+    "code_commit": "fc7bd05132315a50018682d1c11e6c02eddd9bb1",
+    "tree": "c18d4cf46cd04a677f7d01b0c4a7e607bfd88593",
+    "diff_sha256": "095cdbb182a3967d7741afca8787fb6916c228fe47b8983ce562d6e201f2a95a",
+    "files": [
+      "docvault/app.py"
+    ]
+  },
+  "claim": {
+    "leaks_before": 85,
+    "leaks_after": 0,
+    "regressions_after": 0,
+    "legitimate_access_preserved": true,
+    "scope": "Fixed on a sandbox copy for the tested accounts, items and doors listed here. This does not prove the absence of other flaws."
+  },
+  "matrix": {
+    "accounts": [
+      "ana",
+      "ben",
+      "cara",
+      "gus",
+      "hana",
+      "anon"
+    ],
+    "items": 5,
+    "doors": [
+      "comments",
+      "original",
+      "raw",
+      "read",
+      "search",
+      "token_expired",
+      "token_org_only",
+      "token_public"
+    ],
+    "checks": 165
+  },
+  "leaks_closed": [
+    "ana/d4/comments",
+    "ana/d4/original",
+    "ana/d4/raw",
+    "ana/d4/read",
+    "ana/d4/search",
+    "ana/d5/comments",
+    "ana/d5/original",
+    "ana/d5/raw",
+    "ana/d5/read",
+    "ana/d5/search",
+    "anon/d1/raw",
+    "anon/d1/token_expired",
+    "anon/d1/token_org_only",
+    "anon/d2/raw",
+    "anon/d3/raw",
+    "anon/d4/raw",
+    "anon/d5/raw",
+    "ben/d1/comments",
+    "ben/d1/original",
+    "ben/d1/raw",
+    "ben/d1/read",
+    "ben/d1/search",
+    "ben/d1/token_expired",
+    "ben/d4/comments",
+    "ben/d4/original",
+    "ben/d4/raw",
+    "ben/d4/read",
+    "ben/d4/search",
+    "ben/d5/comments",
+    "ben/d5/original",
+    "ben/d5/raw",
+    "ben/d5/read",
+    "ben/d5/search",
+    "cara/d1/comments",
+    "cara/d1/original",
+    "cara/d1/raw",
+    "cara/d1/read",
+    "cara/d1/search",
+    "cara/d1/token_expired",
+    "cara/d2/original",
+    "cara/d3/original",
+    "cara/d4/comments",
+    "cara/d4/original",
+    "cara/d4/raw",
+    "cara/d4/read",
+    "cara/d4/search",
+    "cara/d5/comments",
+    "cara/d5/original",
+    "cara/d5/raw",
+    "cara/d5/read",
+    "cara/d5/search",
+    "gus/d1/comments",
+    "gus/d1/original",
+    "gus/d1/raw",
+    "gus/d1/read",
+    "gus/d1/search",
+    "gus/d1/token_expired",
+    "gus/d1/token_org_only",
+    "gus/d2/comments",
+    "gus/d2/original",
+    "gus/d2/raw",
+    "gus/d2/read",
+    "gus/d2/search",
+    "gus/d3/comments",
+    "gus/d3/original",
+    "gus/d3/raw",
+    "gus/d3/read",
+    "gus/d3/search",
+    "hana/d1/comments",
+    "hana/d1/original",
+    "hana/d1/raw",
+    "hana/d1/read",
+    "hana/d1/search",
+    "hana/d1/token_expired",
+    "hana/d1/token_org_only",
+    "hana/d2/comments",
+    "hana/d2/original",
+    "hana/d2/raw",
+    "hana/d2/read",
+    "hana/d2/search",
+    "hana/d3/comments",
+    "hana/d3/original",
+    "hana/d3/raw",
+    "hana/d3/read",
+    "hana/d3/search"
+  ],
+  "patches": [
+    {
+      "title": "Guard the read endpoint",
+      "lines": 2,
+      "closed": 14,
+      "diff_sha256": "3a2ca2fb3b68fd7af87c7a4c12583e77f01451aa34058e158511e517d081be97",
+      "gates": {
+        "exploit_red_on_replica": true,
+        "patch_applies": true,
+        "guard_only_constraints": true,
+        "exploit_progress": true,
+        "blast_radius_only_leaks_flipped": true,
+        "golden_flows_identical": true,
+        "legit_tests_pass": true
+      },
+      "collateral": []
+    },
+    {
+      "title": "Guard the original download",
+      "lines": 2,
+      "closed": 16,
+      "diff_sha256": "b751b7af27dc32cae50426938d20ef70658e478fe193678c0acdebc90975c3e0",
+      "gates": {
+        "exploit_red_on_replica": true,
+        "patch_applies": true,
+        "guard_only_constraints": true,
+        "exploit_progress": true,
+        "blast_radius_only_leaks_flipped": true,
+        "golden_flows_identical": true,
+        "legit_tests_pass": true
+      },
+      "collateral": []
+    },
+    {
+      "title": "Guard the comments endpoint",
+      "lines": 2,
+      "closed": 14,
+      "diff_sha256": "3b769d586c25c49e55ec1b7a442830d5aa6689ec97fc600baf50013e2fc26647",
+      "gates": {
+        "exploit_red_on_replica": true,
+        "patch_applies": true,
+        "guard_only_constraints": true,
+        "exploit_progress": true,
+        "blast_radius_only_leaks_flipped": true,
+        "golden_flows_identical": true,
+        "legit_tests_pass": true
+      },
+      "collateral": []
+    },
+    {
+      "title": "Replace the open files folder",
+      "lines": 7,
+      "closed": 19,
+      "diff_sha256": "d1dc8cf6fb7b16e84a20f43ea627bcda500a4776cba36c54c03f23af751eebfe",
+      "gates": {
+        "exploit_red_on_replica": true,
+        "patch_applies": true,
+        "guard_only_constraints": true,
+        "exploit_progress": true,
+        "blast_radius_only_leaks_flipped": true,
+        "golden_flows_identical": true,
+        "legit_tests_pass": true
+      },
+      "collateral": []
+    },
+    {
+      "title": "Enforce share-link rules",
+      "lines": 3,
+      "closed": 8,
+      "diff_sha256": "c6f04c2c4e2ddac6464eec585996ef2d798104a21e32765281acd7fdfd6bf844",
+      "gates": {
+        "exploit_red_on_replica": true,
+        "patch_applies": true,
+        "guard_only_constraints": true,
+        "exploit_progress": true,
+        "blast_radius_only_leaks_flipped": true,
+        "golden_flows_identical": true,
+        "legit_tests_pass": true
+      },
+      "collateral": []
+    },
+    {
+      "title": "Filter search results",
+      "lines": 3,
+      "closed": 14,
+      "diff_sha256": "c023ab72cfef0860146fe2131f77b4fa578234448404c2fc96854a1640840ad7",
+      "gates": {
+        "exploit_red_on_replica": true,
+        "patch_applies": true,
+        "guard_only_constraints": true,
+        "exploit_progress": true,
+        "blast_radius_only_leaks_flipped": true,
+        "golden_flows_identical": true,
+        "legit_tests_pass": true
+      },
+      "collateral": []
+    }
+  ],
+  "evidence": [
+    {
+      "what": "before: ben requests read of item 1: LEAK",
+      "file": "before_0_ben_d1_read.png",
+      "sha256": "d20a31d9999349645d56ad7ccaf5fb1880783198fe2200bc2a6ecad8e04f46bc"
+    },
+    {
+      "what": "before: ben requests original of item 1: LEAK",
+      "file": "before_1_ben_d1_original.png",
+      "sha256": "82774c002675cbddf3bf0d3ea783950596ea77349f41789dd2899cff7e951077"
+    },
+    {
+      "what": "before: ben requests comments of item 1: LEAK",
+      "file": "before_2_ben_d1_comments.png",
+      "sha256": "c93e489efd24e34fde5965b4aebf3257bcf7f61051f61178bdbad191222abf39"
+    },
+    {
+      "what": "before: ben requests raw of item 1: LEAK",
+      "file": "before_3_ben_d1_raw.png",
+      "sha256": "03cf355395bad5552cc3de4745e02f9506f2039b5863f2af302bf440c97550eb"
+    },
+    {
+      "what": "before: ben requests search of item 1: LEAK",
+      "file": "before_4_ben_d1_search.png",
+      "sha256": "c3883e8b25b1da01e0e0356f098fa541bcc04ecefd81f676adcb3d864a1c4beb"
+    },
+    {
+      "what": "before: ben requests read of item 2: ALLOWED",
+      "file": "before_5_ben_d2_read.png",
+      "sha256": "b013e6814fdf610a1e399f2338e28755a5ca798a4348dc9994c9eb9b518dc89c"
+    },
+    {
+      "what": "after: ben requests read of item 1: BLOCKED",
+      "file": "after_0_ben_d1_read.png",
+      "sha256": "20a79c5b90fe2f1356d03dd9214d6e7f5821350c5bb7c80972a97a3cc9a4577c"
+    },
+    {
+      "what": "after: ben requests original of item 1: BLOCKED",
+      "file": "after_1_ben_d1_original.png",
+      "sha256": "e0b63c9da28b9bb546494d717e36d77084c5e8afbecc631334f943ed36a7ec47"
+    },
+    {
+      "what": "after: ben requests comments of item 1: BLOCKED",
+      "file": "after_2_ben_d1_comments.png",
+      "sha256": "1ba6061e187558474aabc1b214f3b4413c2bfb53c7a4f6114e159bd09fc8d30b"
+    },
+    {
+      "what": "after: ben requests raw of item 1: BLOCKED",
+      "file": "after_3_ben_d1_raw.png",
+      "sha256": "94be578810ad8fa3bf32b98591197c456646fc82c15eb8afd24101042341502c"
+    },
+    {
+      "what": "after: ben requests search of item 1: BLOCKED",
+      "file": "after_4_ben_d1_search.png",
+      "sha256": "1d526b12e0fa536b0afd62da7bffa348133d673db27709fac50f568416bfa4bb"
+    },
+    {
+      "what": "after: ben requests read of item 2: ALLOWED",
+      "file": "after_5_ben_d2_read.png",
+      "sha256": "b013e6814fdf610a1e399f2338e28755a5ca798a4348dc9994c9eb9b518dc89c"
+    },
+    {
+      "what": "before and after evidence report",
+      "file": "evidence.html",
+      "sha256": "f240ca7fc2e614781d2bbeb8d9de50a4208647a0f53e4b8c7487ee56701f2d9a"
+    }
+  ],
+  "court": {
+    "sites": 6,
+    "attacks": 18,
+    "caught": 18,
+    "survived": [],
+    "results": [
+      {
+        "line": 207,
+        "guard": "not can_access(user, doc)",
+        "mutant": "guard disabled",
+        "caught": true,
+        "why": "reopens 14 leaks the real fix closed"
+      },
+      {
+        "line": 207,
+        "guard": "not can_access(user, doc)",
+        "mutant": "guard inverted",
+        "caught": true,
+        "why": "locks out legitimate users: ana/d1/read, ana/d2/read, ben/d2/read"
+      },
+      {
+        "line": 207,
+        "guard": "not can_access(user, doc)",
+        "mutant": "guard blocks everyone",
+        "caught": true,
+        "why": "locks out legitimate users: ana/d1/read, ana/d2/read, ben/d2/read"
+      },
+      {
+        "line": 215,
+        "guard": "not can_access(user, doc, \"original\")",
+        "mutant": "guard disabled",
+        "caught": true,
+        "why": "reopens 16 leaks the real fix closed"
+      },
+      {
+        "line": 215,
+        "guard": "not can_access(user, doc, \"original\")",
+        "mutant": "guard inverted",
+        "caught": true,
+        "why": "locks out legitimate users: ana/d1/original, ana/d2/original, ben/d2/original"
+      },
+      {
+        "line": 215,
+        "guard": "not can_access(user, doc, \"original\")",
+        "mutant": "guard blocks everyone",
+        "caught": true,
+        "why": "locks out legitimate users: ana/d1/original, ana/d2/original, ben/d2/original"
+      },
+      {
+        "line": 223,
+        "guard": "not can_access(user, doc)",
+        "mutant": "guard disabled",
+        "caught": true,
+        "why": "reopens 14 leaks the real fix closed"
+      },
+      {
+        "line": 223,
+        "guard": "not can_access(user, doc)",
+        "mutant": "guard inverted",
+        "caught": true,
+        "why": "locks out legitimate users: ana/d1/comments, ana/d2/comments, ben/d2/comments"
+      },
+      {
+        "line": 223,
+        "guard": "not can_access(user, doc)",
+        "mutant": "guard blocks everyone",
+        "caught": true,
+        "why": "locks out legitimate users: ana/d1/comments, ana/d2/comments, ben/d2/comments"
+      },
+      {
+        "line": 253,
+        "guard": "rows[0][\"expires\"] <= NOW or (rows[0][\"org_only\"] and not (user and us",
+        "mutant": "guard disabled",
+        "caught": true,
+        "why": "reopens 8 leaks the real fix closed"
+      },
+      {
+        "line": 253,
+        "guard": "rows[0][\"expires\"] <= NOW or (rows[0][\"org_only\"] and not (user and us",
+        "mutant": "guard inverted",
+        "caught": true,
+        "why": "locks out legitimate users: ben/d1/token_org_only, cara/d1/token_org_only, ana/d2/token_public"
+      },
+      {
+        "line": 253,
+        "guard": "rows[0][\"expires\"] <= NOW or (rows[0][\"org_only\"] and not (user and us",
+        "mutant": "guard blocks everyone",
+        "caught": true,
+        "why": "locks out legitimate users: ben/d1/token_org_only, cara/d1/token_org_only, ana/d2/token_public"
+      },
+      {
+        "line": 420,
+        "guard": "not rows or not can_access(user, rows[0])",
+        "mutant": "guard disabled",
+        "caught": true,
+        "why": "reopens 14 leaks the real fix closed"
+      },
+      {
+        "line": 420,
+        "guard": "not rows or not can_access(user, rows[0])",
+        "mutant": "guard inverted",
+        "caught": true,
+        "why": "locks out legitimate users: ana/d1/raw, ana/d2/raw, ben/d2/raw"
+      },
+      {
+        "line": 420,
+        "guard": "not rows or not can_access(user, rows[0])",
+        "mutant": "guard blocks everyone",
+        "caught": true,
+        "why": "locks out legitimate users: ana/d1/raw, ana/d2/raw, ben/d2/raw"
+      },
+      {
+        "line": 231,
+        "guard": "can_access(user, r)",
+        "mutant": "guard disabled",
+        "caught": true,
+        "why": "reopens 14 leaks the real fix closed"
+      },
+      {
+        "line": 231,
+        "guard": "can_access(user, r)",
+        "mutant": "guard inverted",
+        "caught": true,
+        "why": "locks out legitimate users: ana/d1/search, ana/d2/search, ben/d2/search"
+      },
+      {
+        "line": 231,
+        "guard": "can_access(user, r)",
+        "mutant": "guard blocks everyone",
+        "caught": true,
+        "why": "locks out legitimate users: ana/d1/search, ana/d2/search, ben/d2/search"
+      }
+    ]
+  },
+  "tooling": {
+    "gates": [
+      "exploit_red_on_replica",
+      "patch_applies",
+      "guard_only_constraints",
+      "exploit_progress",
+      "blast_radius_only_leaks_flipped",
+      "golden_flows_identical",
+      "legit_tests_pass"
+    ]
+  },
+  "attestation": {
+    "alg": "ed25519",
+    "key_id": "06d6e5d7a50130ee",
+    "public_key": "6ce93763c1730aea0fa1336c528e24029fa557ed9a0624099802fa634bf12ce7",
+    "digest": "80a7d6ddf6b62d4b3d23953de2add35e4323619c719800511bac79669928d068",
+    "signature": "5fd6070c2c88214fc21c42a56d5c965932d8d35f39b32861eef7e83815a4fda3ba776dddb42741fd9ec71abbabf31f77597502f7546e3ffb905baa963f14b70a"
+  }
+}
